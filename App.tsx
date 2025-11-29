@@ -1,24 +1,25 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { Dashboard } from './components/Dashboard';
-import { DueListRedesign } from './components/DueListRedesign';
-import { SmartAddModal } from './components/SmartAddModal';
-import { DueDetailModal } from './components/DueDetailModal';
-import { DeleteConfirmationModal } from './components/DeleteConfirmationModal';
+import NotificationBell from '@/src/components/NotificationBell';
+import { Dashboard } from '@/components/Dashboard';
+import { DueListRedesign } from '@/components/DueListRedesign';
+import { SmartAddModal } from '@/components/SmartAddModal';
+import { DueDetailModal } from '@/components/DueDetailModal';
+import { DeleteConfirmationModal } from '@/components/DeleteConfirmationModal';
  
-import { AuthModal } from './components/AuthModal';
-import { UserProfileModal } from './components/UserProfileModal';
-import { FirebaseTestDashboard } from './components/FirebaseTestDashboard';
+import { AuthModal } from '@/components/AuthModal';
+import { UserProfileModal } from '@/components/UserProfileModal';
+import { FirebaseTestDashboard } from '@/components/FirebaseTestDashboard';
 
-import { PaymentModal } from './components/PaymentModal';
-import { PaymentSection } from './components/PaymentSection';
-import { StorageService } from './services/storageService';
-import { isConfigured, testFirestoreConnection, db } from './services/firebase';
-import { DueWithCustomer, PaymentStatus, DueItem, Customer, PromiseRecord, PaymentTransaction } from './types';
-import { GeminiService } from './services/geminiService';
-import { ModernButton, ModernCard, ModernBadge, ModernSpinner } from './utils/uiComponents';
-import { animationPresets } from './utils/animations';
+import { PaymentModal } from '@/components/PaymentModal';
+import { PaymentSection } from '@/components/PaymentSection';
+import { StorageService } from '@/services/storageService';
+import { isConfigured, testFirestoreConnection, db } from '@/services/firebase';
+import { DueWithCustomer, PaymentStatus, DueItem, Customer, PromiseRecord, PaymentTransaction } from '@/types';
+import { GeminiService } from '@/services/geminiService';
+import { ModernButton, ModernCard, ModernBadge, ModernSpinner } from '@/utils/uiComponents';
+import { animationPresets } from '@/utils/animations';
  
-import { authService, AuthUser } from './services/authService';
+import { authService, AuthUser } from '@/services/authService';
  
 import { 
   LayoutGrid, 
@@ -117,6 +118,9 @@ const App = () => {
       if (user) {
         // User is signed in, load data
         loadData();
+        
+        // Initialize notification service with current user
+        notificationService.setCurrentUser(user.id || 'current-user');
         
       } else {
         // User is signed out, clear data
@@ -538,7 +542,8 @@ const App = () => {
           
           {/* Right Side Actions */}
           <div className="flex items-center gap-4">
-            {/* Notifications removed */}
+            {/* Notification Bell */}
+            <NotificationBell userId={currentUser?.id || 'current-user'} />
             
             {/* Profile Menu */}
             <div className="relative" ref={profileMenuRef}>

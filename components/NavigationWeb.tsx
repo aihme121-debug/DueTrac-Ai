@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Home, CreditCard, Users, Settings, Search, Menu, X, Plus, TrendingUp, Calendar, DollarSign } from 'lucide-react';
+import { Home, CreditCard, Users, Settings, Search, Menu, X, Plus, TrendingUp, Calendar, DollarSign, Bell } from 'lucide-react';
+import NotificationBell from '../src/components/NotificationBell';
 import './PaymentSectionWeb.css';
  
 
@@ -100,7 +101,8 @@ export const NavigationWeb: React.FC<NavigationWebProps> = ({
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
               </form>
 
-              
+              {/* Notification Bell */}
+              <NotificationBell userId="current-user" />
 
               {/* Quick Actions */}
               <button className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors flex items-center gap-2">
@@ -127,6 +129,8 @@ export const NavigationWeb: React.FC<NavigationWebProps> = ({
 
           {/* Mobile Menu Toggle */}
           <div className="flex items-center gap-3">
+            {/* Notification Bell for Mobile */}
+            <NotificationBell userId="current-user" />
             
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

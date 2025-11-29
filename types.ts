@@ -70,3 +70,100 @@ export interface DashboardStats {
   overdueCount: number;
   upcomingCount: number;
 }
+
+export enum NotificationType {
+  INFO = 'info',
+  SUCCESS = 'success',
+  WARNING = 'warning',
+  ERROR = 'error',
+  REMINDER = 'reminder',
+  PAYMENT_DUE = 'payment_due',
+  PAYMENT_RECEIVED = 'payment_received',
+  CUSTOMER_CREATED = 'customer_created',
+  DUE_OVERDUE = 'due_overdue',
+  SYSTEM = 'system'
+}
+
+export enum NotificationPriority {
+  LOW = 'low',
+  MEDIUM = 'medium',
+  HIGH = 'high',
+  URGENT = 'urgent'
+}
+
+export enum NotificationChannel {
+  IN_APP = 'in_app',
+  PUSH = 'push',
+  EMAIL = 'email',
+  SMS = 'sms'
+}
+
+export interface NotificationAction {
+  id: string;
+  label: string;
+  action: string;
+  type: 'primary' | 'secondary' | 'danger';
+  url?: string;
+}
+
+export interface Notification {
+  id: string;
+  userId: string;
+  title: string;
+  message: string;
+  type: NotificationType;
+  priority: NotificationPriority;
+  channels: NotificationChannel[];
+  actions?: NotificationAction[];
+  data?: Record<string, any>;
+  read: boolean;
+  archived: boolean;
+  scheduledFor?: string; // ISO Date String for scheduled notifications
+  expiresAt?: string; // ISO Date String for notification expiration
+  createdAt: string;
+  updatedAt: string;
+  readAt?: string;
+  clickedAt?: string;
+  clickedCount: number;
+  tags?: string[];
+  icon?: string;
+  sound?: string;
+  badge?: number;
+}
+
+export interface NotificationPreferences {
+  userId: string;
+  channels: {
+    inApp: boolean;
+    push: boolean;
+    email: boolean;
+    sms: boolean;
+  };
+  types: {
+    [key in NotificationType]: {
+      enabled: boolean;
+      channels: NotificationChannel[];
+      priority: NotificationPriority;
+    };
+  };
+  quietHours: {
+    enabled: boolean;
+    start: string; // HH:mm format
+    end: string; // HH:mm format
+  };
+  dailyDigest: {
+    enabled: boolean;
+    time: string; // HH:mm format
+  };
+  updatedAt: string;
+}
+
+export interface NotificationStats {
+  total: number;
+  unread: number;
+  read: number;
+  archived: number;
+  byType: Record<NotificationType, number>;
+  byPriority: Record<NotificationPriority, number>;
+  lastNotificationAt?: string;
+}

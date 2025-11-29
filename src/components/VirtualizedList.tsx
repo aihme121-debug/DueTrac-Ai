@@ -38,7 +38,7 @@ export function VirtualizedList<T>({
   // Use regular rendering for small lists
   if (items.length <= 50) {
     return (
-      <div style={{ height: containerHeight, overflowY: 'auto' }}>
+      <div style={{ height: '100%' }}>
         {items.map((item, index) => (
           <div key={keyExtractor(item)} style={{ marginBottom: '1rem' }}>
             {renderItem(item, index)}
@@ -54,6 +54,7 @@ export function VirtualizedList<T>({
       ref={containerRef}
       style={{ height: containerHeight, overflowY: 'auto' }}
       onScroll={handleScroll}
+      className="virtualized-container"
     >
       <div style={{ height: totalHeight, position: 'relative' }}>
         <div style={{ transform: `translateY(${offsetY}px)` }}>
