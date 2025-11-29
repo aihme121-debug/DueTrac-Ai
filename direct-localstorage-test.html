@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LocalStorage Direct Test</title>
+</head>
+<body>
+    <h1>LocalStorage Direct Test</h1>
+    <button onclick="testDirectLocalStorage()">Test Direct localStorage</button>
+    <div id="result"></div>
+
+    <script>
+        function testDirectLocalStorage() {
+            try {
+                // Test 1: Basic localStorage functionality
+                localStorage.setItem('test-key', 'test-value');
+                const value = localStorage.getItem('test-key');
+                
+                // Test 2: JSON storage
+                const testData = ['id1', 'id2', 'id3'];
+                localStorage.setItem('test-json', JSON.stringify(testData));
+                const jsonValue = localStorage.getItem('test-json');
+                const parsedValue = JSON.parse(jsonValue);
+                
+                document.getElementById('result').innerHTML = `
+                    <h3>Direct localStorage Test Results:</h3>
+                    <p><strong>Basic Test:</strong> ${value === 'test-value' ? '✅ PASS' : '❌ FAIL'}</p>
+                    <p><strong>JSON Test:</strong> ${JSON.stringify(parsedValue) === JSON.stringify(testData) ? '✅ PASS' : '❌ FAIL'}</p>
+                    <p><strong>localStorage Available:</strong> ${typeof(Storage) !== "undefined" ? '✅ YES' : '❌ NO'}</p>
+                    <p><strong>Current Domain:</strong> ${window.location.origin}</p>
+                    <p><strong>localStorage Length:</strong> ${localStorage.length}</p>
+                `;
+                
+                // Clean up
+                localStorage.removeItem('test-key');
+                localStorage.removeItem('test-json');
+                
+            } catch (error) {
+                document.getElementById('result').innerHTML = `
+                    <p style="color: red;">❌ Error: ${error.message}</p>
+                    <p><strong>Error Name:</strong> ${error.name}</p>
+                    <p><strong>localStorage might be disabled or blocked</p>
+                `;
+            }
+        }
+        
+        // Run test on load
+        window.onload = function() {
+            testDirectLocalStorage();
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+{
+  "name": "DueTrack AI",
+  "description": "A smart debt collection assistant that helps you track customer payments, visualize cash flow, and generate polite reminders using Gemini AI.",
+  "requestFramePermissions": []
+}

@@ -1,0 +1,41 @@
+{
+  "name": "dynamic-architecture-tests",
+  "version": "1.0.0",
+  "description": "Comprehensive testing suite for dynamic architecture",
+  "scripts": {
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "test:coverage": "vitest --coverage",
+    "test:load": "ts-node tests/runLoadTests.ts",
+    "test:unit": "vitest tests/dynamicArchitecture.test.ts",
+    "test:performance": "vitest tests/performance.test.ts",
+    "test:security": "vitest tests/security.test.ts",
+    "test:all": "npm run test:unit && npm run test:performance && npm run test:security && npm run test:load"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@vitest/coverage-v8": "^1.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0"
+  },
+  "dependencies": {
+    "firebase": "^10.0.0"
+  },
+  "vitest": {
+    "test": {
+      "globals": true,
+      "environment": "node"
+    },
+    "coverage": {
+      "reporter": ["text", "json", "html"],
+      "exclude": [
+        "node_modules/**",
+        "tests/**",
+        "**/*.d.ts",
+        "**/*.test.ts",
+        "**/mockData.ts"
+      ]
+    }
+  }
+}

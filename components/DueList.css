@@ -1,0 +1,85 @@
+/* DueList Component - Spacing and Overlap Fixes */
+
+/* Prevent card overlapping and ensure consistent spacing */
+.due-card {
+  margin-bottom: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.due-card:last-child {
+  margin-bottom: 0;
+}
+
+/* Ensure proper spacing in header */
+.due-card .gap-1 {
+  gap: 0.25rem;
+}
+
+.due-card .gap-2 {
+  gap: 0.5rem;
+}
+
+/* Fix progress bar alignment */
+.due-card .h-1\.5 {
+  height: 0.375rem;
+}
+
+/* Ensure buttons are clickable */
+.due-card button {
+  position: relative;
+  z-index: 30;
+  cursor: pointer !important;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Ensure button containers are properly positioned */
+.due-card .flex-wrap {
+  position: relative;
+  z-index: 25;
+}
+
+/* Ensure consistent card spacing */
+.due-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .due-card-container {
+    border-radius: 0.5rem;
+  }
+  
+  .due-card-container .rounded-t-lg {
+    border-top-left-radius: 0.375rem;
+    border-top-right-radius: 0.375rem;
+  }
+  
+  .due-card-container .p-2 {
+    padding: 0.5rem;
+  }
+  
+  .due-card-container .text-xs {
+    font-size: 0.7rem;
+  }
+  
+  .due-card-container .text-sm {
+    font-size: 0.8rem;
+  }
+}
+
+/* Small screen spacing adjustments */
+@media (max-width: 640px) {
+  .due-card-container {
+    margin-bottom: 0.75rem;
+  }
+  
+  .due-list-container {
+    gap: 0.75rem;
+  }
+}

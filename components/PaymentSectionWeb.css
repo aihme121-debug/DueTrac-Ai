@@ -1,0 +1,230 @@
+/* PaymentSection Web - Performance Optimized Animations */
+
+/* 60fps Card Animations */
+.payment-card {
+  transform: translateZ(0);
+  will-change: transform, box-shadow;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 1;
+}
+
+.payment-card:hover {
+  transform: translateY(-4px) translateZ(0);
+  box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.1);
+  z-index: 10; /* Ensure hovered card stays on top */
+  position: relative;
+}
+
+/* Hardware Accelerated Particle Animations */
+.floating-particle {
+  transform: translateZ(0);
+  will-change: transform;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) translateZ(0); }
+  50% { transform: translateY(-10px) translateZ(0); }
+}
+
+/* Performance-optimized gradient animations */
+.gradient-shift {
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease infinite;
+  transform: translateZ(0);
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Smooth hover effects for interactive elements */
+.interactive-element {
+  transform: translateZ(0);
+  will-change: transform;
+  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.interactive-element:hover {
+  transform: scale(1.05);
+}
+
+.interactive-element:active {
+  transform: scale(0.98);
+}
+
+/* Button animations */
+.payment-button {
+  transform: translateZ(0);
+  will-change: transform, background-color;
+  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.payment-button:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 12px -3px rgba(0, 0, 0, 0.1);
+}
+
+.payment-button:active {
+  transform: scale(0.98);
+}
+
+/* Badge animations */
+.payment-badge {
+  transform: translateZ(0);
+  will-change: transform;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.payment-badge:hover {
+  transform: scale(1.1);
+}
+
+/* Icon animations */
+.payment-icon {
+  transform: translateZ(0);
+  will-change: transform;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.payment-icon:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Summary card animations */
+.summary-card {
+  transform: translateZ(0);
+  will-change: transform, background-color;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.summary-card:hover {
+  transform: scale(1.05);
+}
+
+/* Filter button animations */
+.filter-button {
+  transform: translateZ(0);
+  will-change: transform, background-color, box-shadow;
+  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.filter-button:hover {
+  transform: scale(1.05);
+}
+
+.filter-button:active {
+  transform: scale(0.95);
+}
+
+/* Input focus animations */
+.payment-input {
+  transform: translateZ(0);
+  will-change: transform, border-color, box-shadow;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.payment-input:focus {
+  transform: scale(1.02);
+}
+
+/* Staggered animation for cards */
+.payment-card-staggered {
+  animation: fadeInUp 0.4s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+  }
+}
+
+/* Loading animations */
+.payment-loading {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Responsive animations */
+@media (prefers-reduced-motion: reduce) {
+  .payment-card,
+  .floating-particle,
+  .interactive-element,
+  .payment-button,
+  .payment-badge,
+  .payment-icon,
+  .summary-card,
+  .filter-button,
+  .payment-input {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* High DPI display optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .payment-card {
+    transform: translateZ(0) scale(1);
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .payment-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .payment-button:hover {
+    transform: none;
+  }
+  
+  .interactive-element:hover {
+    transform: none;
+  }
+}
+
+/* Prevent overlapping on small screens */
+@media (max-width: 640px) {
+  .payment-card {
+    margin-bottom: 1.5rem !important;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .payment-card:last-child {
+    margin-bottom: 0 !important;
+  }
+  
+  .payment-button {
+    min-height: 2rem;
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .payment-card:hover {
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
+  }
+}
